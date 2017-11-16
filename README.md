@@ -4,14 +4,14 @@
 
 # Multichannel Notifications with Sinatra and Twilio
 
-## Local development
+This project is built using the [Sinatra](http://www.sinatrarb.com/) web framework. It is designed to allow users to subscribe to and send SMS notifications via Twilio Notify, and is the companion app to [Multichannel Notifications with Swift and Twilio](https://github.com/TwilioDevEd/notify-flashmob-swift/), which allows users to subscribe to native Apple push notifications (APN). 
 
-This project is built using the [Sinatra](http://www.sinatrarb.com/) web framework.
+## Local development
 
 1. First clone this repository and `cd` into it.
 
    ```bash
-   git clone git@github.com:jennifermarie/notify-flashmob-sinatra.git
+   git clone git@github.com:TwilioDevEd/notify-flashmob-sinatra.git
    cd notify-flashmob-sinatra
    ```
 
@@ -31,7 +31,6 @@ This project is built using the [Sinatra](http://www.sinatrarb.com/) web framewo
    [Twilio Account Settings](https://www.twilio.com/user/account/settings).
    You will also need to set up a `TWILIO_NOTIFY_SERVICE` [here](https://www.twilio.com/console/notify/services) and if you have not yet registered for one, you'll need to set up a Twilio phone number [here](https://www.twilio.com/user/account/phone-numbers/incoming) and Messaging Service [here](https://www.twilio.com/console/sms/services).
 
-   Run `source .env` to export the environment variables.
 
 1. Make sure the tests succeed.
 
