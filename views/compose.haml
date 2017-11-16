@@ -1,0 +1,15 @@
+%h4 Tell everyone about the surprise!
+
+%p What would you like to tell the group? Keep it short and sweet so it can fit into a text or a push notification!
+
+%form.form-horizontal{ action: '/send_message', method: 'POST' }
+  .form-group
+    .col-sm-12
+      %input.form-control{ name: :message }
+  .form-group
+    .col-sm-4
+      %button.btn.btn-success{ name: :tag, value: 'all' } Send to all users
+    .col-sm-4
+      %button.btn.btn-success{ name: :tag, value: 'sms-participant' } Send to SMS users only    
+    .col-sm-4
+      %button.btn.btn-success{ name: :tag, value: 'ios-participant' } Send to iOS users only

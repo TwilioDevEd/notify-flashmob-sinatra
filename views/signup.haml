@@ -1,0 +1,19 @@
+%h4 Surprise parties are the best!
+
+%p Thanks for your interest in signing up! Can you share your phone number so we can notify you when it's time to party?
+
+
+- flash.keys.each do |type|
+    %div{:class => "flash #{type} alert-box radius", "data-alert" => ""}
+    = flash[type]
+
+%form.form-horizontal{ action: '/register', method: 'POST' }
+    .form-group
+        .col-md-8.col-md-offset-2
+            %input.form-control{ name: :address }
+            %input{name: :type, :type => "hidden", :value => "sms"}
+            %input{name: :tag, :type => "hidden", :value => "sms-participant"}
+
+    .form-group
+        .col-sm-12
+            %button.btn.btn-success Notify me

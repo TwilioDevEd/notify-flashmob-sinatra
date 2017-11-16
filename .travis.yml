@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - rvm 2.2.5
+  - rvm 2.3.0
+
+before_install:
+  - sudo apt-get update
+
+env:
+  global:
+    - TWILIO_ACCOUNT_SID=TWILIO-ACCOUNT-SID
+    - TWILIO_AUTH_TOKEN=TWILIO-AUTH-TOKEN
+    - TWILIO_NUMBER=TWILIO-NUMBER
