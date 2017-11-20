@@ -8,22 +8,9 @@ WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
   config.before(:each) do
-      stub_request(:post, "https://notify.twilio.com/v1/Services/#{ENV['TWILIO_NOTIFY_SERVICE']}/Bindings").
-         with(body: {"Address"=>"+13125339189", "BindingType"=>"sms", "Identity"=>"user1", "Tag"=>"sms-participant"},
-              headers: {'Accept'=>'application/json', 'Accept-Charset'=>'utf-8', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Basic QUM5OWJhN2I2MWZiZGI2YzAzOTY5ODUwNWRlYTVmMDQ0YzpmNTZmN2Q4MTcwYWRmZjYzMjk4NzBmODc2MTI5OTNlNA==', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'twilio-ruby/5.3.1 (ruby/x86_64-darwin16 2.4.1-p111)'}).
-         to_return(status: 200, body: "", headers: {}) 
-      stub_request(:post, "https://notify.twilio.com/v1/Services/#{ENV['TWILIO_NOTIFY_SERVICE']}/Notifications").
-         with(body: {"Body"=>"Great, you're signed up! I'll let you know when and where to go when it's time for the surprise.", "Identity"=>"user1"},
-              headers: {'Accept'=>'application/json', 'Accept-Charset'=>'utf-8', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Basic QUM5OWJhN2I2MWZiZGI2YzAzOTY5ODUwNWRlYTVmMDQ0YzpmNTZmN2Q4MTcwYWRmZjYzMjk4NzBmODc2MTI5OTNlNA==', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'twilio-ruby/5.3.1 (ruby/x86_64-darwin16 2.4.1-p111)'}).
-         to_return(status: 200, body: "", headers: {})
-      stub_request(:post, "https://notify.twilio.com/v1/Services/#{ENV['TWILIO_NOTIFY_SERVICE']}/Notifications").
-         with(body: {"Body"=>"It's party time!", "Tag"=>"all"},
-              headers: {'Accept'=>'application/json', 'Accept-Charset'=>'utf-8', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Basic QUM5OWJhN2I2MWZiZGI2YzAzOTY5ODUwNWRlYTVmMDQ0YzpmNTZmN2Q4MTcwYWRmZjYzMjk4NzBmODc2MTI5OTNlNA==', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'twilio-ruby/5.3.1 (ruby/x86_64-darwin16 2.4.1-p111)'}).
-         to_return(status: 200, body: "", headers: {})
-      stub_request(:post, "https://notify.twilio.com/v1/Services/#{ENV['TWILIO_NOTIFY_SERVICE']}/Bindings").
-         with(body: {"Address"=>"+1", "BindingType"=>"sms", "Identity"=>"user1", "Tag"=>"sms-participant"},
-              headers: {'Accept'=>'application/json', 'Accept-Charset'=>'utf-8', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Basic QUM5OWJhN2I2MWZiZGI2YzAzOTY5ODUwNWRlYTVmMDQ0YzpmNTZmN2Q4MTcwYWRmZjYzMjk4NzBmODc2MTI5OTNlNA==', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'twilio-ruby/5.3.1 (ruby/x86_64-darwin16 2.4.1-p111)'}).
-         to_return(status: 200, body: "", headers: {})   
+    stub_request(:post, /notify.twilio.com/).
+      with(headers: {'Accept'=>'application/json', 'Accept-Charset'=>'utf-8', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'twilio-ruby/5.3.1 (ruby/x86_64-darwin16 2.4.1-p111)'}).
+      to_return(status: 200, body: "", headers: {})
   end
 end
 
@@ -47,7 +34,7 @@ describe 'flashmob notifications' do
   end
 
   it 'redirects to /welcome after creating a binding' do
-    post '/register', { address: "+13125339189", type: "sms", 
+    post '/register', { address: "+14159805105", type: "sms", 
       tag: "sms-participant", identity: "user1"}
     expect(last_response).to be_redirect
     follow_redirect!

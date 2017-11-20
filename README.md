@@ -54,6 +54,20 @@ This project is built using the [Sinatra](http://www.sinatrarb.com/) web framewo
    ngrok http 9292
    ```
 
+## Register for notifications
+
+Navigate to `/` on web or mobile to register for SMS notifications. Enter a valid phone number, and you should be able to create a binding to that number (you'll then be able to receive notifications via Twilio Notify). 
+
+_Note: as-is, this application expects US phone numbers; you'll need to edit binding_creator.rb to remove the +1 from entered addresses if you are outside of the US, and trade it for your country code._
+
+## Compose a notification
+
+Navigate to `/compose` to draft a notification, and tap the button on the left to send it to all registered users. 
+
+If you have users who have registered for Apple Push Notifications via the [companion Swift app](https://github.com/TwilioDevEd/notify-flashmob-swift/), you may send segmented notifications to SMS and iOS users.
+
+_Note: in a production application, the `/compose` endpoint would likely be inaccessible to users. It is exposed here to allow easy notification composition._
+
 ## Meta
 * [MIT License](http://www.opensource.org/licenses/mit-license.html)
 * Lovingly crafted by the Twilio Developer Education team ❤️
