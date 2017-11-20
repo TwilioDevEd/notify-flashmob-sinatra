@@ -20,6 +20,7 @@ module FlashMob
     register Sinatra::Flash
     set :root, File.dirname(__FILE__)
 
+    # Connect to you Notify service
     before do
       account_sid = ENV['TWILIO_ACCOUNT_SID']
       auth_token = ENV['TWILIO_AUTH_TOKEN']
@@ -65,10 +66,12 @@ module FlashMob
       redirect to('/confirmation')
     end
 
+    # Registration confirmation page
     get '/welcome' do
       haml :'/register_confirmation'
     end
 
+    # Message confirmation page
     get '/confirmation' do
       haml :'/send_confirmation'
     end
