@@ -20,7 +20,7 @@ module FlashMob
     register Sinatra::Flash
     set :root, File.dirname(__FILE__)
 
-    # Connect to you Notify service
+    # Connect to your Notify service
     before do
       account_sid = ENV['TWILIO_ACCOUNT_SID']
       auth_token = ENV['TWILIO_AUTH_TOKEN']
